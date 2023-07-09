@@ -1,4 +1,6 @@
+'use strict';
 const { Model } = require('sequelize');
+const pokemon = require('pg');
 
 module.exports = (sequelize, DataTypes) => {
     class Pokemon extends Model {
@@ -15,6 +17,31 @@ Pokemon.init({
         type :DataTypes.INTEGER,
         primaryKey : true,
         autoIncrement :true
+    },
+    height: {
+        type: DataTypes.string,
+        allowNull: true,
+    },
+    weight: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    evolution_id: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    weakness: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    recommendation: {
+        type: DataTypes.STRING
     }
-})
+}, {
+    sequelize,
+    modelName: "Pokemon",
+    tableName:"pokemons",
+    timestamps:false
+});
+return Pokemon;
 }
