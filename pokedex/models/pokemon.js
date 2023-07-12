@@ -1,6 +1,8 @@
 'use strict';
-const { Model } = require('sequelize');
+//const { Model } = require('sequelize');
 const pokemon = require('pg');
+const { Sequelize } = require('sequelize');
+//const sequelize = new Sequelize(process.env.PG_URI);
 
 module.exports = (sequelize, DataTypes) => {
     class Pokemon extends Model {
