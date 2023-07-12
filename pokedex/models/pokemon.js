@@ -1,49 +1,28 @@
 'use strict';
-//const { Model } = require('sequelize');
-const pokemon = require('pg');
-const { Sequelize } = require('sequelize');
-//const sequelize = new Sequelize(process.env.PG_URI);
-
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-    class Pokemon extends Model {
-        static associate({elements}){
-            Pokemon.hasMany(elements, {
-                foreignKey: 'pokemon_id',
-                as:'Pokemon'
-            })
+  class Pokemon extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-}
-
-Pokemon.init({
-    pokemon_id: {
-        type :DataTypes.INTEGER,
-        primaryKey : true,
-        autoIncrement :true
-    },
-    height: {
-        type: DataTypes.string,
-        allowNull: true,
-    },
-    weight: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    evolution_id: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    weakness: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    recommendation: {
-        type: DataTypes.STRING
-    }
-}, {
+  }
+  Pokemon.init({
+    element_id: DataTypes.STRING,
+    name: DataTypes.STRING,
+    height: DataTypes.STRING,
+    weight: DataTypes.STRING,
+    evolution_id: DataTypes.STRING,
+    weakness: DataTypes.STRING
+  }, {
     sequelize,
-    modelName: "Pokemon",
-    tableName:"pokemons",
-    timestamps:false
-});
-return Pokemon;
-}
+    modelName: 'Pokemon',
+  });
+  return Pokemon;
+};

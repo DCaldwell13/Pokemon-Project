@@ -1,31 +1,25 @@
 'use strict';
-const { Model } = require ('sequelize');
-const evolution = require('pg');
-
-module.exports = (sequelize,DataType) => {
-    class Evolution extends Model {
-        static associate({ pokemon }) {
-            Evolution .hasMany(pokemon, {
-                foreignKey: 'evolution_id',
-                as:'elements'
-            })
-        }
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Evolution extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-    Evolution.init({
-        evolution_id: {
-            type: DataType.string,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        element_id: {
-            type: DataType.string,
-            allowNull: false
-        }
-        }, {
-            sequelize, 
-            modelName: 'evolution',
-            tableName: 'evolution_id',
-            timestamps:false
-    });
-    return Evolution;
-}
+  }
+  Evolution.init({
+    element_id: DataTypes.STRING,
+    name: DataTypes.STRING,
+    evolution_id: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Evolution',
+  });
+  return Evolution;
+};
